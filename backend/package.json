@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "start": "nodemon src/server.ts",
+    "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,json,css,md}\""
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/passport": "^3.0.2",
+    "@fastify/session": "^11.1.1",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.2",
+    "fastify-plugin": "^5.1.0",
+    "mongoose": "^9.0.1",
+    "prettier": "^3.7.4"
+  }
+}
