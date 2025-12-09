@@ -1,8 +1,9 @@
 import type {FastifyRequest , FastifyReply} from "fastify"
-import User from "../model/user.model";
+import 'dotenv/config'
+import User from "../model/user.model.ts";
 
 
-type getUser = {
+export type getUser = {
     username:string
 }
 
