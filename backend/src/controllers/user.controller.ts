@@ -84,7 +84,7 @@ export const getAllLikes = async (req:FastifyRequest , rep: FastifyReply) =>{
         rep.status(200).send({likedBy:user?.likedBy})
     }catch(err){
         console.log("The error is comming from getAllLikes",err);
-        rep.status(500).send({error:error.message})
+        rep.status(500).send({error:(err as Error).message})
     }
 }
 

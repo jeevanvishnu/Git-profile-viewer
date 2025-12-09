@@ -53,7 +53,7 @@ const userSchema= new Schema<Iuser>({
         }
     ]
 
-}{timestamps:true})
+},{timestamps:true})
 
 
 const User = mongoose.model<Iuser>("User" , userSchema)
