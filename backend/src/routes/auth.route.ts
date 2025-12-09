@@ -11,7 +11,30 @@ Router.get('/auth/github/callback',
   function(req, replay) {
     replay.redirect(String(process.env.CLIENT_BASE_URL));
   });
+
+
+  Router.get('/check',(req , replay)=>{
+    if(req.isAuthenticated()){
+      replay.send({user:req.user})
+    }else{
+      replay.send({user : null})
+    }
+  })
+
+
+  Router.get('/logout',(req  , replay)=>{
+    try {
+      req.session.delete()
+      return replay.send("Logout sucessfully")
+      
+    } catch (error) {
+      console.log("The error is comming from logout",error);
+      
+    }
+  })
 }
+
+
 
 
 export default authRoute

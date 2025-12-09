@@ -1,5 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 
+interface LikedByItem {
+  userName: string;
+  avatarUrl?: string;
+  LikedData: Date;
+}
 
 type Iuser ={
     name:string,
@@ -7,7 +12,7 @@ type Iuser ={
     profileUrl:string,
     avatarUrl:string,
     likedProfile:string[],
-    likedBy:[]
+    likedBy:LikedByItem[]
 }
 
 const userSchema= new Schema<Iuser>({
