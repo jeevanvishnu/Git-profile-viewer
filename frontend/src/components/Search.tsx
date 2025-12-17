@@ -17,6 +17,7 @@ const Search = () => {
 					className='block w-full p-4 ps-10 text-sm rounded-lg bg-glass focus:ring-blue-500 focus:border-blue-500 bg-transparent focus:bg-transparent '
 					placeholder='i.e. johndoe'
 					required
+					
 				/>
 				<button
 					type='submit'
