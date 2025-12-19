@@ -26,7 +26,6 @@ export const getUserProfileAndRepo = async (req:FastifyRequest<{Params:getUser}>
             })
 
             const repoRes = await repos.json()
-
             rep.status(200).send({userProfile , repoRes})
 
             

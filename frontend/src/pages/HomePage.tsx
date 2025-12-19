@@ -7,9 +7,18 @@ import toast from 'react-hot-toast';
 import Repos from '../components/Repos';
 import SortRepo from '../components/SortRepo';
 
+type Repo = {
+  id: number;
+  name: string;
+  created_at: string;
+  stargazers_count: number;
+  forks_count: number;
+  [key: string]: any;
+};
+
 const HomePage = () => {
 const [userProfile , setUserProfile] = useState(null)
-const [repos , setRepos] = useState<string[]>([])
+const [repos , setRepos] = useState<Repo[]>([])
 const [loading , setLoading] = useState(false)
 const [sortType  , setSortType] = useState("Most")
 
@@ -17,12 +26,11 @@ const [sortType  , setSortType] = useState("Most")
 const getUserandProfile = useCallback(async(username:string = "jeevanVishnu")=>{
 	setLoading(true)
 	try{
-		const res = await axios.get('https://api.github.com/users/jeevanvishnu')
-		const {userProfile , repos} =  res.data
-		console.log("...............",userProfile , repos)
-		repos.sort((a , b) => new Data(b.created_at) - new Date(a.created_at))
+		const res = await axios.get(`/api/v1/user/profile/${username}`)
+		const {repoRes , userProfile} =  res.data
+		  repoRes.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 		setUserProfile(userProfile)
-		setRepos(repos)
+		setRepos(repoRes)
 		return {userProfile , repos}
 	}catch(err:any){
 		toast.error(err.message || "Internal server error")
