@@ -24,7 +24,7 @@ app.register(connectionDb,{URL})
 app.register(fastifyCookie,{
     secret:process.env.SECRET_COOKIE
 })
-console.log(process.env.SECRET_SESSION);
+
 
 // This is session setup
 app.register(fastifySecureSession, {

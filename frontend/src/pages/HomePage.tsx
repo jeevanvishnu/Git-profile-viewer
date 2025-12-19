@@ -46,10 +46,10 @@ const onSearch = async (e:React.FormEvent<HTMLFormElement> , username:string) =>
 	setUserProfile(null)
 	setRepos([])
 	
-	const {userProfile , repos} = await getUserandProfile(username)
+	const {userProfile , repoRes} = await getUserandProfile(username)
 
 	setUserProfile(userProfile)
-	setRepos([...repos])
+	setRepos([...repoRes])
 	setLoading(false)
 	setSortType('resent')
 }
@@ -57,7 +57,7 @@ const onSearch = async (e:React.FormEvent<HTMLFormElement> , username:string) =>
 
 	const onSort = (sortType) => {
 		if (sortType === "recent") {
-			repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); 
+			repos.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()); 
 		} else if (sortType === "stars") {
 			repos.sort((a, b) => b.stargazers_count - a.stargazers_count); 
 			repos.sort((a, b) => b.forks_count - a.forks_count); 
