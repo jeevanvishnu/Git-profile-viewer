@@ -37,6 +37,8 @@ export const getUserProfileAndRepo = async (req:FastifyRequest<{Params:getUser}>
 
 
 export const likedProfile = async (req:FastifyRequest<{Params:getUser}> , rep:FastifyReply) =>{
+   
+    
     try {
         const {username} = req.params
 
@@ -77,6 +79,7 @@ export const likedProfile = async (req:FastifyRequest<{Params:getUser}> , rep:Fa
 
 
 export const getAllLikes = async (req:FastifyRequest , rep: FastifyReply) =>{
+    
     try{
         if(!req.user) return rep.status(401).send({message: "Unauthorized"});
         const user = await User.findById(req.user._id.toString())

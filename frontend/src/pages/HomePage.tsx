@@ -20,7 +20,7 @@ const HomePage = () => {
 const [userProfile , setUserProfile] = useState(null)
 const [repos , setRepos] = useState<Repo[]>([])
 const [loading , setLoading] = useState(false)
-const [sortType  , setSortType] = useState("Most")
+const [sortType  , setSortType] = useState("recent")
 
 
 const getUserandProfile = useCallback(async(username:string = "jeevanVishnu")=>{
@@ -60,8 +60,10 @@ const onSearch = async (e:React.FormEvent<HTMLFormElement> , username:string) =>
 			repos.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()); 
 		} else if (sortType === "stars") {
 			repos.sort((a, b) => b.stargazers_count - a.stargazers_count); 
-			repos.sort((a, b) => b.forks_count - a.forks_count); 
+		}else if(sortType === 'forks')	 {
+			repos.sort((a, b) => b.forks_count - a.forks_count);
 		}
+		
 		setSortType(sortType);
 		setRepos([...repos]);
 	};
