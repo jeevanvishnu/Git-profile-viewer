@@ -8,6 +8,8 @@ type param = {
 export const explorePopularRepo = async (req : FastifyRequest<{Params:param}> , rep: FastifyReply) =>{
     try {
         const {language} = req.params
+        console.log(language,"......backend");
+        
 
         const response = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=10`,{
             headers:{
