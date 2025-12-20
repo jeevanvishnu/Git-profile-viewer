@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IoLocationOutline } from "react-icons/io5";
 import { RiGitRepositoryFill, RiUserFollowFill, RiUserFollowLine } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
 import { TfiThought } from "react-icons/tfi";
 import { FaEye } from "react-icons/fa";
 import { formatMemberSince } from '../utils/function';
+import LikeProfile from './LikeProfile';
+import { useAuthContext } from '../context/AuthContex';
 
 interface userProfile {
 	html_url: string;
@@ -27,6 +29,7 @@ interface userProps {
 }
 
 const ProfileInfo = ({userProfile}:userProps) => {
+	const {authUser} = useAuthContext()
 	const memberScience  = formatMemberSince(userProfile?.created_at)
   return (
 
@@ -39,6 +42,8 @@ const ProfileInfo = ({userProfile}:userProps) => {
 					</a>
 					{/* View on Github */}
 					<div className='flex gap-2 items-center flex-col'>
+					   {authUser &&	<LikeProfile userProfile={userProfile}/>}
+
 						<a
 							href={userProfile.html_url}
 							target='_blank'
@@ -48,6 +53,7 @@ const ProfileInfo = ({userProfile}:userProps) => {
 							<FaEye size={16} />
 							View on Github
 						</a>
+
 					</div>
 				</div>
 

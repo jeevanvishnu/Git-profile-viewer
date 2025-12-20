@@ -13,6 +13,7 @@ const Logout = () => {
       const data = res.data;
       console.log(data);
       setAuthUser(null);
+      toast.success("Logout sucessfully")
     } catch (err) {
       toast.error(err.message || "Some error logout");
     }
