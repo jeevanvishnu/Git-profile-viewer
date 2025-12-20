@@ -8,7 +8,8 @@ const authRoute = (Router: FastifyInstance) => {
 
   Router.get('/github/callback',
     { preValidation: passport.authenticate('github', { failureRedirect: process.env.CLIENT_BASE_URL + '/login' }) },
-    function (req, replay) {
+    async (req, replay)=> {
+    await req.login(req.user!)
       replay.redirect(String(process.env.CLIENT_BASE_URL));
     });
 

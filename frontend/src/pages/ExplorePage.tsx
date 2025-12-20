@@ -26,7 +26,7 @@ const ExplorePage = () => {
   }, []);
 
   useEffect(() => {
-    exploreRepo("java");
+    exploreRepo("javascript");
   }, [exploreRepo]);
 
   return (

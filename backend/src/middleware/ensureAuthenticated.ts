@@ -1,16 +1,14 @@
+import type { FastifyRequest, FastifyReply } from "fastify";
 
-
-import type { FastifyRequest, FastifyReply } from 'fastify';
-
-export async function ensureAuthenticated(
+export const ensureAuthenticated = async (
   req: FastifyRequest,
   reply: FastifyReply
-) {
-  if (req.isAuthenticated?.()) {
-    return;
+) => {
+  if (req.isAuthenticated()) {
+    return; 
   }
 
-  return reply.code(401).send({
-    error: 'Unauthorized'
-  });
-}
+  return reply
+    .status(401)
+    .send({ message: "Unauthorized" }); 
+};
