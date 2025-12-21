@@ -14,7 +14,7 @@ const authRoute = (Router: FastifyInstance) => {
     });
 
 
-  Router.get('/check', (req, replay) => {
+  Router.get('/check', async(req, replay) => {
     if (req.isAuthenticated()) {
       replay.send({ user: req.user })
     } else {

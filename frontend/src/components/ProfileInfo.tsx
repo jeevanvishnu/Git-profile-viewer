@@ -42,7 +42,7 @@ const ProfileInfo = ({userProfile}:userProps) => {
 					</a>
 					{/* View on Github */}
 					<div className='flex gap-2 items-center flex-col'>
-					   {authUser &&	<LikeProfile userProfile={userProfile}/>}
+					   {authUser?.userName &&	<LikeProfile userProfile={userProfile}/>}
 
 						<a
 							href={userProfile.html_url}

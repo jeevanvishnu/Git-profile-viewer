@@ -37,6 +37,7 @@ const userSchema= new Schema<Iuser>({
         type:[String],
         default:[]
     },
+    
     likedBy:[
         {
             userName:{

@@ -15,12 +15,10 @@ const LikeProfile = ({ userProfile }) => {
 
       const data = await res.data;
 
-      if (data.error) {
-        toast.error(data.error);
-      }
-      toast.success(data.message);
+      data.error ? toast.error(data.error) : toast.success(data.message)
     } catch (err) {
       toast.error(err.message);
+      
     }
 
     if (!authUser || isOwnProfile) return null;

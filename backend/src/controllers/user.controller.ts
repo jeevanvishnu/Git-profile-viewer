@@ -26,6 +26,7 @@ export const getUserProfileAndRepo = async (
         authorization: `token ${process.env.GITHUB_API_KEY ?? ''}`,
       },
     });
+    
 
     const repoRes = await repos.json();
     rep.status(200).send({ userProfile, repoRes });
@@ -43,22 +44,22 @@ export const likedProfile = async (
     const { username } = req.params;
 
     if (!req.user) {
-      rep.status(401).send({ message: 'Unauthorized' });
+      rep.status(401).send({ error: 'Unauthorized' });
       return;
     }
 
     const user = await User.findById(req.user._id.toString());
-    console.log(user, 'User ....');
+    
 
     const userLike = await User.findOne({ userName: username });
-    console.log(userLike, '...like');
+    
 
     if (!userLike) {
-      return rep.status(404).send({ error: 'User not found' });
+      return rep.send({ error: 'User not found' });
     }
 
     if (user!.likedProfile.includes(username)) {
-      return rep.status(400).send({ error: 'User already liked' });
+      return rep.send({ error: 'User already liked' });
     }
 
     userLike.likedBy.push({
@@ -70,7 +71,7 @@ export const likedProfile = async (
     user!.likedProfile.push(username);
 
     await Promise.all([userLike.save(), user?.save()]);
-    rep.status(200).send({ message: 'User Liked' });
+    rep.send({ message: 'User Liked' });
   } catch (error) {
     console.log('The error is comming from likedProfile', error);
     rep.status(500).send('Internal server error');
