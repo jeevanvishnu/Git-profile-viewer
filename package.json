@@ -4,10 +4,13 @@
   "private": true,
   "module": "src/index.ts",
   "scripts": {
-    "dev": "bun --watch src/server.ts",
-    "start": "concurrently \"bun run start:backend\" \"bun run start:frontend\"",
-    "start:backend": "cd backend && bun start",
-    "start:frontend": "cd frontend && bun dev"
+    "dev": "concurrently \"bun run dev:backend\" \"bun run dev:frontend\"",
+    "dev:backend": "cd backend && bun --watch src/server.ts",
+    "dev:frontend": "cd frontend && bun dev",
+
+    "build": "cd frontend && bun install && bun run build",
+
+    "start": "cd backend && bun start"
   },
   "devDependencies": {
     "@types/bun": "latest",

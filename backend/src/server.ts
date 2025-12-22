@@ -9,7 +9,8 @@ import authRoute from "./routes/auth.route.ts"
 import userRoute from './routes/user.route.ts'
 import exploreRoute from "./routes/explore.route.ts";
 import cors from "@fastify/cors";
-
+import fastifyStatic from "@fastify/static";
+import path from "path";
 
 const app = fastify({ logger: true })
 
@@ -38,6 +39,14 @@ app.register(fastifySecureSession, {
 // This is call passport js 
 app.register(fastifyPassport.initialize());
 app.register(fastifyPassport.secureSession());
+
+app.register(fastifyStatic, {
+  root: path.join(process.cwd(), "../frontend/dist"),
+});
+
+app.get("*", (_, reply) => {
+  reply.sendFile("index.html");
+});
 
 app.register(cors, {
   origin: 'http://localhost:3000'
