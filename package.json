@@ -1,0 +1,19 @@
+{
+  "name": "github-app",
+  "type": "module",
+  "private": true,
+  "module": "src/index.ts",
+  "scripts": {
+    "dev": "bun --watch src/server.ts",
+    "start": "concurrently \"bun run start:backend\" \"bun run start:frontend\"",
+    "start:backend": "cd backend && bun start",
+    "start:frontend": "cd frontend && bun dev"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "concurrently": "^9.2.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

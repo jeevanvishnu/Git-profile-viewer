@@ -12,6 +12,7 @@ const connectionDb = async (fastify:FastifyInstance , options:DbOptions) =>{
    
     try{
        await mongoose.connect(options.URL)
+       
         fastify.log.info("Database connected sucessfully")
         
     }catch(err){

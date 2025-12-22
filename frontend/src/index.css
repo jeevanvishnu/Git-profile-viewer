@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)), url('/bg.png');
+  background: linear-gradient(to bottom right, rgba(37, 37, 37, 0.9), rgba(2, 2, 2, 0.4)), url('/bg.jpeg');
   background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;

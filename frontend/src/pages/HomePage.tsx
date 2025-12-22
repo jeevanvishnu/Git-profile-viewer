@@ -27,6 +27,7 @@ const HomePage = () => {
       setLoading(true);
       try {
         const res = await axios.get(`/api/v1/user/profile/${username}`);
+       
         const { repoRes, userProfile } = res.data;
         repoRes.sort(
           (a, b) =>
