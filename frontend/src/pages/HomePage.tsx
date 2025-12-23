@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Search from "../components/Search";
 import ProfileInfo from "../components/ProfileInfo";
 import Spinner from "../components/Spinner";
-import axios from "axios";
+import { api } from "../lib/api";
 import toast from "react-hot-toast";
 import Repos from "../components/Repos";
 import SortRepo from "../components/SortRepo";
@@ -26,7 +26,7 @@ const HomePage = () => {
     async (username: string = "jeevanVishnu") => {
       setLoading(true);
       try {
-        const res = await axios.get(`/api/v1/user/profile/${username}`);
+        const res = await api.get(`/api/v1/user/profile/${username}`);
        
         const { repoRes, userProfile } = res.data;
         repoRes.sort(
